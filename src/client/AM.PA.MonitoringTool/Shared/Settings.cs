@@ -26,24 +26,33 @@ namespace Shared
         public const bool IsUploadReminderEnabled = false;
         public static bool IsFeedbackEnabled = true; // can be overwritten when starting the retrospection
         private const int _checkForToolUpdatesIntervalInMins = 5;
+        public static bool AnonymizeSensitiveData = false; // default: disabled
 #elif Pilot_MSR
         public const bool IsUploadEnabled = true;
         public const bool IsUploadReminderEnabled = true;
         public static bool IsFeedbackEnabled = false; // can be overwritten when starting the retrospection
         private const int _checkForToolUpdatesIntervalInMins = 6 * 60;
+        public static bool AnonymizeSensitiveData = false; // default: disabled
 #elif Pilot_TaskDetection_March17
         public const bool IsUploadEnabled = false;
         public const bool IsUploadReminderEnabled = false;
         public static bool IsFeedbackEnabled = false; // can be overwritten when starting the retrospection
         private const int _checkForToolUpdatesIntervalInMins = 6 * 60;
+        public static bool AnonymizeSensitiveData = false; // default: disabled
+#elif Pilot_Thomas_May19
+        public const bool IsUploadEnabled = false;
+        public const bool IsUploadReminderEnabled = false;
+        public static bool IsFeedbackEnabled = false; // can be overwritten when starting the retrospection
+        private const int _checkForToolUpdatesIntervalInMins = 6 * 60;
+        public static bool AnonymizeSensitiveData = true; // default: disabled
 #else
         public const bool IsUploadEnabled = false;
         public const bool IsUploadReminderEnabled = false;
         public static bool IsFeedbackEnabled = true; // can be overwritten when starting the retrospection
         private const int _checkForToolUpdatesIntervalInMins = 6 * 60;
+        public static bool AnonymizeSensitiveData = false; // default: disabled
 #endif
 
-        public static bool AnonymizeSensitiveData = false; // default: disabled
         public const bool PrintQueriesToConsole = false;
 
         internal const string LogDbTable = "log";
