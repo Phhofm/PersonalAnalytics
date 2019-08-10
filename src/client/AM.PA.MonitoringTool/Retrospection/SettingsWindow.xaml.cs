@@ -28,10 +28,6 @@ namespace Retrospection
         private bool defaultTimeSpentShowProgramsEnabled;
         private bool defaultTimeSpentShowEmailsEnabled;
         private bool defaultTimeSpentHideMeetingsWithoutAttendeesEnabled;
-        private bool defaultPolarTrackerEnabled;
-        private bool defaultFitbitTrackerEnabled;
-        private bool defaultFitbitTokenRemoveEnabled;
-        private bool defaultFitbitTokenRevoked;
 
         private string minutesStr = " minutes";
         private List<ITracker> _trackers;
@@ -57,10 +53,6 @@ namespace Retrospection
             defaultTimeSpentShowProgramsEnabled = dto.TimeSpentShowProgramsEnabled.Value;
             defaultTimeSpentHideMeetingsWithoutAttendeesEnabled = dto.TimeSpentHideMeetingsWithoutAttendeesEnabled.Value;
             defaultTimeSpentShowEmailsEnabled = dto.TimeSpentShowEmailsEnabled.Value;
-            defaultPolarTrackerEnabled = dto.PolarTrackerEnabled.Value;
-            defaultFitbitTrackerEnabled = dto.FitbitTrackerEnabled.Value;
-            defaultFitbitTokenRemoveEnabled = dto.FitbitTokenRevokEnabled.Value;
-            defaultFitbitTokenRevoked = dto.FitbitTokenRevoked.Value;
             
             // no changes yet, disable buttons by default
             SaveButtonsEnabled(false);
@@ -101,16 +93,6 @@ namespace Retrospection
                 CbPopUpInterval.IsEnabled = true;
             }
             CbPopUpInterval.SelectionChanged += CbPopUpInterval_SelectionChanged;
-
-            PolarEnabled.IsChecked = defaultPolarTrackerEnabled;
-            PolarEnabled.Checked += CbChecked_Update;
-            PolarEnabled.Unchecked += CbChecked_Update;
-
-            FitbitEnabled.IsChecked = defaultFitbitTrackerEnabled;
-            FitbitEnabled.Checked += CbChecked_Update;
-            FitbitEnabled.Unchecked += CbChecked_Update;
-
-            FitbitRevoke.IsEnabled = defaultFitbitTokenRemoveEnabled;
         }
 
         #region User Changed Values
@@ -142,9 +124,7 @@ namespace Retrospection
                  (defaultOpenRetrospectionInFullScreen != CbOpenRetrospectionInFullScreen.IsChecked.Value) ||
                  (defaultTimeSpentShowEmailsEnabled != CbTimeSpentShowEmailsEnabled.IsChecked.Value) ||
                  (defaultTimeSpentHideMeetingsWithoutAttendeesEnabled != CbTimeSpentHideMeetingsWithoutAttendeesEnabled.IsChecked.Value) ||
-                 (defaultTimeSpentShowProgramsEnabled != CbTimeSpentShowProgramsEnabled.IsChecked.Value) ||
-                 (defaultPolarTrackerEnabled != PolarEnabled.IsChecked.Value) ||
-                 (defaultFitbitTrackerEnabled != FitbitEnabled.IsChecked.Value)
+                 (defaultTimeSpentShowProgramsEnabled != CbTimeSpentShowProgramsEnabled.IsChecked.Value)
                  )
                 {
                     SaveButtonsEnabled(true);
@@ -223,17 +203,6 @@ namespace Retrospection
                 }
                 else { dto.UserInputTrackerEnabled = null; }
 
-                if (defaultPolarTrackerEnabled != PolarEnabled.IsChecked.Value)
-                {
-                    dto.PolarTrackerEnabled = PolarEnabled.IsChecked.Value;
-                }
-                else { dto.PolarTrackerEnabled = null; }
-
-                if (defaultFitbitTrackerEnabled != FitbitEnabled.IsChecked.Value)
-                {
-                    dto.FitbitTrackerEnabled = FitbitEnabled.IsChecked.Value;
-                }
-                else { dto.FitbitTrackerEnabled = null; }
             }
             catch { }
 
@@ -255,18 +224,6 @@ namespace Retrospection
         private void PrivacyStatement_Clicked(object sender, RoutedEventArgs e)
         {
             Handler.GetInstance().OpenPrivacyStatement();
-        }
-
-        private void FitbitRevoke_Click(object sender, RoutedEventArgs e)
-        {
-            FitbitRevoke.IsEnabled = false;
-
-            //  FitbitConnector.RevokeAccessToken(SecretStorage.GetAccessToken());
-            UpdatedSettingsDto = new SettingsDto();
-            UpdatedSettingsDto.FitbitTokenRevoked = true;
-
-            DialogResult = true;
-            this.Close();
         }
     }
 }

@@ -32,10 +32,6 @@ namespace Shared.Data
         public bool? TimeSpentShowEmailsEnabled { get; set; }
         public bool? TimeSpentHideMeetingsWithoutAttendeesEnabled { get; set; }
         public bool? TimeSpentShowProgramsEnabled { get; set; }
-        public bool? PolarTrackerEnabled { get; set; }
-        public bool? FitbitTrackerEnabled { get; set; }
-        public bool? FitbitTokenRevokEnabled { get; set; }
-        public bool? FitbitTokenRevoked { get; set; }
     }
     public class StartEndTimeDto
     {

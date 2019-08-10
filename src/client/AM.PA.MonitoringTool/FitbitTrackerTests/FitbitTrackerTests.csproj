@@ -53,12 +53,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecretStorageTests.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FitbitTracker\FitbitTracker.csproj">
-      <Project>{D7752ED4-6DD5-4953-8B5F-BBCE24136D1C}</Project>
-      <Name>FitbitTracker</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
