@@ -16,6 +16,7 @@ a:active, a:hover { outline: 0px; }
 .for-image #write { padding-left: 8px; padding-right: 8px; }
 body.typora-export { padding-left: 30px; padding-right: 30px; }
 .typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
 @media screen and (max-width: 500px) {
   body.typora-export { padding-left: 0px; padding-right: 0px; }
   #write { padding-left: 20px; padding-right: 20px; }
@@ -86,7 +87,7 @@ blockquote > :first-child, li > :first-child { margin-top: 0px; }
   #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
   .typora-export * { -webkit-print-color-adjust: exact; }
   html.blink-to-pdf { font-size: 13px; }
-  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write { break-after: avoid; }
   .typora-export #write::after { height: 0px; }
   .is-mac table { break-inside: avoid; }
 }
@@ -153,6 +154,9 @@ svg[id^="mermaidChart"] { line-height: 1em; }
 mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
 .md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
 mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
 
 
 :root {
@@ -249,17 +253,33 @@ h6 code {
     font-size: inherit;
 }
 h1 {
-    padding-bottom: .3em;
     font-size: 2.25em;
     line-height: 1.2;
     border-bottom: 1px solid #eee;
 }
 h2 {
-   padding-bottom: .3em;
     font-size: 1.75em;
     line-height: 1.225;
     border-bottom: 1px solid #eee;
 }
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
 h3 {
     font-size: 1.5em;
     line-height: 1.43;
@@ -522,7 +542,7 @@ header, .context-menu, .megamenu-content, footer{
 
 </style>
 </head>
-<body class='typora-export os-windows' >
-<div  id='write'  class = ''><h1><a name="personalanalytics-focussession" class="md-header-anchor"></a><span>PersonalAnalytics-FocusSession</span></h1><h2><a name="purpose" class="md-header-anchor"></a><span>Purpose</span></h2><p><span>I developed this tool for my masterthesis at the University of Zuerich with the following question in mind:</span></p><p><span>Can we develop an approach that supports managing communication and self-experimentation that </span></p><p><span>a) helps the participant focus on a specific task during a specified timeframe and</span></p><p><span>b) reduces the amount of context switches during this specified timeframe?</span></p><p><span>FocusSession is now a productivity-tool build to support commitment to more distraction-free timeframes of focused work. It&#39;s the result from observing myself while studying for university exams, since I wanted a tool like this. Maybe this tool can help you too :)</span></p><p><span>If you are a windows user, feel free to give this tool a try ;)</span></p><p><span>You can install it from here: </span><a href='https://pluto.ifi.uzh.ch/PersonalAnalytics-FocusSession/' target='_blank' class='url'>https://pluto.ifi.uzh.ch/PersonalAnalytics-FocusSession/</a></p><p><span>It is built upon the Personal Analytics Tool, found here: </span><a href='https://pluto.ifi.uzh.ch/PersonalAnalytics/' target='_blank' class='url'>https://pluto.ifi.uzh.ch/PersonalAnalytics/</a></p><p><span>When opening, there might be a message from Microsoft Defender SmartScreen. If this happend, click &quot;More info&quot; right underneath the text, and then &quot;Run anyway&quot; to continue with the installation.</span></p><p><span>After the installation, a window will appear that contains some information about the program. When clicking Next, you will also be able to enable the Office 365 Tracker. If you enable this, you will be able to connect to your office365 mail service, which will track how many emails you receive during a focus session, and also allow for automatic replies during such sessions, if desired. Continue clicking Next, the window will disappear if there is no more information to display.</span></p><p><span>You will notice a small icon in the taskbar. If not, show hidden icons, and drag and drop the icon into the visible field, next to the network icon for example</span></p><p><img src="./githubPage/icon.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><span>When right clicking the icon, you get into the context menu, which allows you to use the tools functionality</span></p><p><img src="./githubPage/contextMenu.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><span>Focus Sessions are the periods of time you commit to focus on a task. You can start either an open session, which runs until you stop it, or a closed session, which runs for a predefined timeframe. An active session will be indicated trough an additional icon, and when hovering the FocusSession-icon there will be additional information for how long the session is already running</span></p><p><img src="./githubPage/hoverInfo.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><span>When starting a session, there will be a check if Microsoft Focus Assist is set on Alarms only to help suppress notifications that would disturb your focus. Focus Assist can be set on Alarms only when clicking on the action center icon</span></p><p><img src="./githubPage/actionCenter.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><span>During such a session, potentially distracting applications will be flagged. You can then decide if this application is relevant for the current session (will not display the flagger anymore) or not</span></p><p><img src="./githubPage/windowFlagger.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><span>When stopping a session, or the session runs out, there will be a summary displayed</span></p><p><img src="./githubPage/summary.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><span>In the settings window, you can enable or disable or adjust features like the window flagger.</span></p><p><span>Yes that is it :) Have fun trying the tool out, maybe it helps :)</span></p><p><span>Ah and of course, you will find the source code in one of the pinned github repositories on my profile page: </span><a href='https://github.com/phhofm' target='_blank' class='url'>https://github.com/phhofm</a></p><p><span>Greetings</span></p><p><span>Philip Hofmann</span></p></div>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><h1><a name="personalanalytics-focussession" class="md-header-anchor"></a><span>PersonalAnalytics-FocusSession</span></h1><h2><a name="purpose" class="md-header-anchor"></a><span>Purpose</span></h2><p><span>This prototype has been developed in relation to the FocusSession master-thesis at the University of Zuerich. Download the thesis </span><a href='https://github.com/Phhofm/papers/raw/master/Masterthesis_FocusSession_PhilipHofmann.pdf'><span>here</span></a><span>.</span></p><p><span>Knowledge workers are bombarded with an avalanche of messages each day in various communication channels. These workers commonly feel compelled to promptly answer these messages, which stems from self-imposed and external expectations. These circumstances lead to constant interruptions for the worker, switching between productive applications needed for the current assignment and communication applications, increasing mental disruptions, and even stress experienced. </span></p><p><span>This prototype aims to reduce communication disruptions and context switches, improving the focus and flow of work on a specific work task. </span></p><p><span>FocusSession is now a productivity-tool built to support commitment to more distraction-free timeframes of focused work.</span></p><p><span>If you are a windows user, feel free to give this tool a try :)</span></p><p><span>You can install it from </span><a href='https://pluto.ifi.uzh.ch/PersonalAnalytics-FocusSession/'><span>here</span></a><span>.</span></p><p><span>It is built upon the Personal Analytics Tool, found </span><a href='https://pluto.ifi.uzh.ch/PersonalAnalytics/'><span>here</span></a><span>.</span></p><h2><a name="installation--setup" class="md-header-anchor"></a><span>Installation &amp; Setup</span></h2><p><span>Upon executing the installer, a message from Microsoft Defender SmartScreen might appear. In that case, click &quot;More info&quot; right underneath the text, and then &quot;Run anyway&quot; to continue with the installation.</span></p><p><span>After a successful installation of FocusSession, a view will appear, containing general information. When clicking Next, you will be able to enable the Office 365 Tracker. This tracker will connect to your office365 mail service, which will track emails received during a focus session, and allows for automatic replies if desired.</span></p><p><span>A new icon is now present in the taskbar. If not, click on &#39;show hidden icons&#39;, then drag and drop the icon into the visible field.</span></p><p><img src="./githubPage/icon.png" referrerpolicy="no-referrer"></p><h2><a name="utilization" class="md-header-anchor"></a><span>Utilization</span></h2><p><span>Right-clicking the icon will open the context menu, which is the control panel to the tool&#39;s functionality.</span></p><p><img src="./githubPage/contextMenu.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><span>Focus Sessions are small units of time, in which you internally commit to focus on a specific task. You can start such a session by running an open session, which will run until you manually stop it, or running a closed session, which will elapse after the defined timeframe. An active session is indicated with an informational icon appearing. When hovering the FocusSession-icon, additional information displays how long the session is, or will be, running.</span></p><p><img src="./githubPage/hoverInfo.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><span>When starting a focus session, the prototype checks if Microsoft Focus Assist is activated to ensure you do not get interrupted through notifications appearing. Focus Assist can be set on Alarms only when clicking on the action center icon.</span></p><p><img src="./githubPage/actionCenter.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><span>When a focus session is active, potentially distracting applications will be flagged. If you specify the flagged application being relevant for the current task, it will be whitelisted throughout the session.</span></p><p><img src="./githubPage/windowFlagger.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><span>At the session end, a summary window will be displayed. The summary helps guide your attention to which communication applications need to be checked, if any.</span></p><p><img src="./githubPage/summary.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><p><span>Through the context menu, you also reach the settings where you can enable or disable or adjust specific features.</span></p><p>&nbsp;</p><h2><a name="concluding-notes" class="md-header-anchor"></a><span>Concluding Notes</span></h2><p><span>That is the essential part of it :) Have fun trying out the prototype; I hope it will help you work more distraction-free on the specific tasks you want to progress.</span></p><p>&nbsp;</p><p><span>This prototype&#39;s source code can be found in one of the pinned GitHub repositories on </span><a href='https://github.com/phhofm'><span>my profile page</span></a><span>.</span></p></div>
 </body>
 </html>
